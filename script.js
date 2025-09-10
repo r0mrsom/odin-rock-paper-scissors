@@ -49,17 +49,18 @@ function playRound(humanChoice, computerChoice) {
         }
     }
     if (humanIncrement == 1) {
-        console.log(`You Win! ${humanChoice[0].toUpperCase() + humanChoice.slice(1)} beats ${computerChoice[0].toUpperCase() + computerChoice.slice(1)}.`)
+        console.log(`You Win! ${humanChoice[0].toUpperCase() + humanChoice.slice(1)} destroys ${computerChoice[0].toUpperCase() + computerChoice.slice(1)}.`)
         humanScore += 1;
     }
     else if (computerIncrement == 1) {
-        console.log(`You Lose! ${computerChoice[0].toUpperCase() + computerChoice.slice(1)} beats ${humanChoice[0].toUpperCase() + humanChoice.slice(1)}.`)
+        console.log(`You Lose! ${humanChoice[0].toUpperCase() + humanChoice.slice(1)} defeated by ${computerChoice[0].toUpperCase() + computerChoice.slice(1)}.`)
         computerScore += 1;
     }
     else (
         console.log(`Draw! No one wins.`)
     )
-    console.log(`Human: ${humanScore}, Computer: ${computerScore}`)
+    console.log(`Human: ${humanScore}, Computer: ${computerScore}`);
+    console.log("");
 }
 
 function playGame() {
@@ -70,6 +71,21 @@ function playGame() {
         const computerSelection = getComputerChoice();
 
         playRound(humanSelection, computerSelection);
+    }
+
+    if(humanScore > computerScore) {
+        console.log("Human Wins!");
+        console.log(`Final Score --> Human: ${humanScore}, Computer: ${computerScore}`);
+    }
+
+    else if (humanScore < computerScore) {
+        console.log("Computer Wins!");
+        console.log(`Final Score --> Human: ${humanScore}, Computer: ${computerScore}`);
+    }
+
+    else {
+        console.log("Human and Computer Tied!");
+        console.log(`Final Score --> Human: ${humanScore}, Computer: ${computerScore}`);
     }
 }
 
