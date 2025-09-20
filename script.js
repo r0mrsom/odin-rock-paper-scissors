@@ -60,6 +60,8 @@ button.forEach((item) => {
 
                     humanSelected.textContent = "";
                     computerSelected.textContent = "";
+                    humanContainer.style.backgroundColor = 'white';
+                    computerContainer.style.backgroundColor = 'white';
                     promptMessage.textContent = "Welcome to the game! Select from rock, paper and scissors."
                     humanTally.textContent = humanScore;
                     computerTally.textContent = computerScore;
