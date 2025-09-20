@@ -4,16 +4,19 @@ let gameNumber = 0;
 let humanChoice;
 let message = "";
 
+const documentContainer = document.querySelector("body");
 const button = document.querySelectorAll("button");
 const humanTally = document.querySelector("#scoreHuman");
 const computerTally = document.querySelector("#scoreComputer");
 const humanSelected = document.querySelector("#humanSelection");
 const computerSelected = document.querySelector("#computerSelection");
 const promptMessage = document.querySelector("#prompt");
+const humanContainer = document.querySelector(".human");
+const computerContainer = document.querySelector(".computer");
 
+promptMessage.textContent = "Welcome to the game! Select from rock, paper and scissors."
 humanTally.textContent = humanScore;
 computerTally.textContent = computerScore;
-promptMessage.textContent = "Welcome to the game! Select from rock, paper and scissors."
 
 
 function getComputerChoice() {
@@ -31,10 +34,40 @@ function getComputerChoice() {
 
 button.forEach((item) => {
     item.addEventListener("click", (e) => {
-        humanChoice = e.target.id;
-        gameNumber += 1;
-        console.log(`humanChoice after: ${humanChoice} \n Game Number: ${gameNumber}`);
-        playRound(humanChoice, getComputerChoice())
+
+        
+        if (humanScore < 5 && computerScore < 5) {
+            console.log(true)
+            humanChoice = e.target.id;
+            playRound(humanChoice, getComputerChoice())
+            gameNumber += 1;
+            console.log(`humanChoice after: ${humanChoice} \n Game Number: ${gameNumber}\nhumanScore: ${humanScore}\ncomputerScore: ${computerScore}`);
+            
+            if (humanScore == 5 || computerScore == 5) {
+                const restart = document.createElement("button");
+                restart.textContent = "restart";
+                restart.style.fontSize = "2vw";
+                restart.style.display = "block"
+                restart.style.margin = "0 auto"
+                restart.style.padding = "1%";
+                documentContainer.appendChild(restart);
+
+                restart.addEventListener("click", () => {
+                    humanScore = 0;
+                    computerScore = 0;
+                    gameNumber = 0;
+                    message = "";
+
+                    promptMessage.textContent = "Welcome to the game! Select from rock, paper and scissors."
+                    humanTally.textContent = humanScore;
+                    computerTally.textContent = computerScore;
+                    restart.remove();
+                })
+            }
+        }
+        else {
+
+        }
     })
 })
 
@@ -44,6 +77,7 @@ function getHumanChoice() {
     return humanChoice;
 };
 */
+
 
 function playRound(humanChoice, computerChoice) {
     let computerIncrement = 0;
@@ -72,9 +106,10 @@ function playRound(humanChoice, computerChoice) {
             humanIncrement = 1;
         }
     }
+    
 
-    humanSelected.textContent = humanChoice;
-    computerSelected.textContent = computerChoice;
+    humanSelected.textContent = humanChoice + " was chosen by Human.";
+    computerSelected.textContent = computerChoice + " was chosen by Computer.";
 
     roundWinner(humanIncrement, computerIncrement, humanChoice, computerChoice);
 
@@ -91,57 +126,29 @@ function roundWinner(humanIncrement, computerIncrement, humanChoice, computerCho
     if (humanIncrement == 1) {
         message = `You Win! ${humanChoice[0].toUpperCase() + humanChoice.slice(1)} destroys ${computerChoice[0].toUpperCase() + computerChoice.slice(1)}.`;
         humanScore += 1;
+        humanContainer.style.backgroundColor = 'skyblue';
+        computerContainer.style.backgroundColor = 'white';
     }
     else if (computerIncrement == 1) {
         message = `You Lose! ${humanChoice[0].toUpperCase() + humanChoice.slice(1)} defeated by ${computerChoice[0].toUpperCase() + computerChoice.slice(1)}.`;
         computerScore += 1;
+        humanContainer.style.backgroundColor = 'white';
+        computerContainer.style.backgroundColor = 'skyblue';
     }
-    else (
-        message = `Draw! No one wins.`
-    )
-
-    console.log(`Human: ${humanScore}, Computer: ${computerScore}`);
-    console.log("");
+    else {
+        message = "Draw! No one wins."
+        humanContainer.style.backgroundColor = 'pink';
+        computerContainer.style.backgroundColor = 'pink';
+    }
 }
 
 function gameOver() {
     if (humanScore == 5) {
-        message = "GAME OVER! HUMAN WINS";
+        message = "GAME OVER! HUMAN WINS.";
     }
 
     else if (computerScore == 5) {
-        message = "GAME OVER! COMPUTER WINS"
+        message = "GAME OVER! COMPUTER WINS."
     }
     promptMessage.textContent = message;
 }
-
-/* ---- FUNCTION FOR 5 Games
-function playGame() {
-
-    for (let i = 0; i < 5; i++) {
-
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-
-        playRound(humanSelection, computerSelection);
-    }
-
-    if(humanScore > computerScore) {
-        console.log("Human Wins!");
-        console.log(`Final Score --> Human: ${humanScore}, Computer: ${computerScore}`);
-    }
-
-    else if (humanScore < computerScore) {
-        console.log("Computer Wins!");
-        console.log(`Final Score --> Human: ${humanScore}, Computer: ${computerScore}`);
-    }
-
-    else {
-        console.log("Human and Computer Tied!");
-        console.log(`Final Score --> Human: ${humanScore}, Computer: ${computerScore}`);
-    }
-}
-*/
-
-
-//playGame();

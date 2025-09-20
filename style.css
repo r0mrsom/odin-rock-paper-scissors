@@ -1,0 +1,77 @@
+html {
+    background-color: white;
+}
+
+body {
+    background-color: gray;
+    margin: 1%;
+    padding: 3%;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 2%;
+    font-size: 5vw;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 2%;
+}
+
+.choices {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 2%;
+}
+
+.human,
+.computer {
+    background-color: white;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1%;
+    padding: 2%;
+    text-align: center;
+}
+
+h4 {
+    margin: 0;
+    font-size: 2vw;
+}
+
+span {
+    font-size: 2vw;
+    margin: 0.5%
+}
+
+.message {
+    display: flex;
+    flex-direction: row;
+    font-size: 3vw;
+    align-items: center;
+    justify-content: center;
+    margin: 2vw;
+}
+
+
+.message {
+    text-align: center;
+    margin: 1%;
+    padding: 1%;
+    background-color: white;
+}
+
+
+.buttons button {
+    padding: 1%;
+    width: 30%;
+    font-size: 2.5vw;
+}
