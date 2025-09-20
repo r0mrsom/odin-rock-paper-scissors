@@ -58,6 +58,8 @@ button.forEach((item) => {
                     gameNumber = 0;
                     message = "";
 
+                    humanSelected.textContent = "";
+                    computerSelected.textContent = "";
                     promptMessage.textContent = "Welcome to the game! Select from rock, paper and scissors."
                     humanTally.textContent = humanScore;
                     computerTally.textContent = computerScore;
